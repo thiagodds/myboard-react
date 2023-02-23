@@ -14,7 +14,7 @@ const boardSlice = createSlice({
           },
           {
             id: 2,
-            title: 'Task 01',
+            title: 'Task 02',
           }
         ]
       }

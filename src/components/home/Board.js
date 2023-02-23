@@ -1,24 +1,24 @@
-import { Container, Box, Button, Toolbar, Card, CardContent, Grid } from "@mui/material";
-import { useSelector, useDispatch } from 'react-redux'
+import { Box, Button, Toolbar, Grid } from "@mui/material";
+import { useSelector } from 'react-redux'
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import BoardColumn from "./BoardColumn";
 
-const Board = () => {
-  const renderColumns = (columns) => {
-    return columns.map(column => (
-      <Grid item>
-        <BoardColumn id={ column.id }></BoardColumn>
-      </Grid>
-    ));
-  };
+const renderColumns = (columns) => {
+  return columns.map(column => (
+    <Grid item sx={{ width: 350}}>
+      <BoardColumn id={ column.id }></BoardColumn>
+    </Grid>
+  ));
+};
 
+const Board = () => {
   const columns = useSelector(state => state.board.columns);
 
   return (
     <Box 
       component="main"
       sx={{ 
-        bgcolor: '#F5F5F5', flexGrow: 1,
+        flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
         pt: 2,
