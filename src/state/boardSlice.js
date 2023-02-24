@@ -19,7 +19,44 @@ const boardSlice = createSlice({
         ]
       }
     ]
+  },
+  reducers: {
+    addNewCard: (state, action) => {
+      state.columns = state.columns.map((column) => {
+        if (column.id === action.payload.columnId) {
+          return {
+            ...column,
+            tasks: [
+              ...column.tasks,
+              {
+                id: action.payload.id,
+                title: action.payload.title
+              }
+            ]
+          }
+        }
+
+        return {
+          ...column
+        }
+      });
+    },
+    removeEmptyCard: (state, action) => {
+      state.columns = state.columns.map((column) => {
+        if (column.id === action.payload) {
+          return {
+            ...column,
+            tasks: column.tasks.filter((task) => task.id !== 0)
+          }
+        }
+
+        return {
+          ...column
+        }
+      });
+    }   
   }
 });
 
+export const { addNewCard, removeEmptyCard } = boardSlice.actions;
 export default boardSlice.reducer;

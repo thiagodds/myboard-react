@@ -2,10 +2,10 @@ import { Divider, List } from "@mui/material";
 import { useSelector } from 'react-redux'
 import BoardColumnListItem from "./BoardColumnListItem";
 
-const renderList = (tasks) => {
+const renderList = (tasks, columnId) => {
   return tasks.map((x) => (
     <>
-      <BoardColumnListItem task={x} />
+      <BoardColumnListItem task={x} columnId={columnId} />
       <Divider />
     </>
   ));
@@ -18,7 +18,7 @@ const BoardColumnList = ({ columnId }) => {
 
   return (
     <List>
-      { renderList(tasks) }
+      { renderList(tasks, columnId) }
     </List>
   )
 }
