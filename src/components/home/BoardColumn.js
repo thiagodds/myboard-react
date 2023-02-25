@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import BoardColumnList from "./BoardColumnList";
 import { addNewCard, removeColumn } from "../../state/boardSlice";
 import React, { useState } from "react";
+import uuid from "react-uuid";
 
 const BoardColumn = ({ id }) => {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ const BoardColumn = ({ id }) => {
           <Button
             size="small"
             onClick={() =>
-              dispatch(addNewCard({ id: 0, title: "", columnId: id }))
+              dispatch(addNewCard({ id: uuid(), title: "", columnId: id }))
             }
           >
             <AddIcon />
