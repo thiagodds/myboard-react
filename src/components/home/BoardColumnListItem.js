@@ -6,7 +6,7 @@ import React, { useState } from "react";
 const BoardColumnListItem = ({ task, columnId }) => {
   const dispatch = useDispatch();
   const [taskState, setTaskState] = useState(task);
-  const [inputState, setInputState] = useState(true);
+  const [inputState, setInputState] = useState(task.title === "");
 
   const handleTitleChange = (event) => {
     setTaskState({ ...taskState, title: event.target.value });

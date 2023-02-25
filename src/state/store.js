@@ -1,8 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import boardSlice from './boardSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import boardSlice from "./boardSlice";
+import storageUtils from "./localStorageUtils";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    board: boardSlice
-  }
-})
+    board: boardSlice,
+  },
+});
+
+store.subscribe(() => {
+  storageUtils.saveStateInStorage(store.getState());
+});
+
+export default store;

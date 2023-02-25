@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import storageUtils from "./localStorageUtils";
 
+const storageState = storageUtils.getStateFromStorage();
+const initialState = storageState ? JSON.parse(storageState).board.columns : [];
 const boardSlice = createSlice({
   name: "board",
   initialState: {
-    columns: [],
+    columns: initialState,
   },
   reducers: {
     addNewCard: (state, action) => {
