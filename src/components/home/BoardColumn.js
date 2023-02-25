@@ -5,17 +5,22 @@ import {
   CardContent,
   CardHeader,
   IconButton,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector, useDispatch } from "react-redux";
 import BoardColumnList from "./BoardColumnList";
-import { addNewCard } from "../../state/boardSlice";
+import { addNewCard, removeColumn } from "../../state/boardSlice";
+import React, { useState } from "react";
 
 const BoardColumn = ({ id }) => {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.board.columns);
   const column = columns.filter((x) => x.id === id)[0];
+  const [optionsSate, setOptionsState] = useState(null);
+  const open = Boolean(optionsSate);
 
   return (
     <div>
@@ -23,9 +28,32 @@ const BoardColumn = ({ id }) => {
         <CardHeader
           title={column.title}
           action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
+            <>
+              <IconButton
+                id="options-icon"
+                aria-controls={open ? "options-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={(event) => setOptionsState(event.currentTarget)}
+              >
+                <MoreVertIcon />
+              </IconButton>
+              <Menu
+                id="options-menu"
+                anchorEl={optionsSate}
+                open={open}
+                onClose={() => setOptionsState(null)}
+              >
+                <MenuItem
+                  onClick={() => {
+                    dispatch(removeColumn({ columnId: id }));
+                    setOptionsState(null);
+                  }}
+                >
+                  Remove Column
+                </MenuItem>
+              </Menu>
+            </>
           }
         />
         <CardContent>

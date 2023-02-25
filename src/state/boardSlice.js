@@ -1,25 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import uuid from "react-uuid";
 
 const boardSlice = createSlice({
   name: "board",
   initialState: {
-    columns: [
-      {
-        id: uuid(),
-        title: "Sample",
-        tasks: [
-          {
-            id: 1,
-            title: "Task 01",
-          },
-          {
-            id: 2,
-            title: "Task 02",
-          },
-        ],
-      },
-    ],
+    columns: [],
   },
   reducers: {
     addNewCard: (state, action) => {
@@ -66,8 +50,15 @@ const boardSlice = createSlice({
         },
       ];
     },
+
+    removeColumn: (state, action) => {
+      state.columns = state.columns.filter(
+        (x) => x.id !== action.payload.columnId
+      );
+    },
   },
 });
 
-export const { addNewCard, removeEmptyCard, addNewColumn } = boardSlice.actions;
+export const { addNewCard, removeEmptyCard, addNewColumn, removeColumn } =
+  boardSlice.actions;
 export default boardSlice.reducer;
