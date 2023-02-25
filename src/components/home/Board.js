@@ -7,7 +7,7 @@ import NewColumn from "./NewColumn";
 
 const renderColumns = (columns) => {
   return columns.map((column) => (
-    <Grid item sx={{ width: 350 }}>
+    <Grid item sx={{ width: 350 }} key={column.id}>
       <BoardColumn id={column.id}></BoardColumn>
     </Grid>
   ));

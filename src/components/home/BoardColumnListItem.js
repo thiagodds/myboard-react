@@ -1,12 +1,20 @@
-import { ListItem, ListItemText, TextField } from "@mui/material";
+import {
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Modal,
+  TextField,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
 import { removeEmptyCard, updateCardTitle } from "../../state/boardSlice";
 import React, { useState } from "react";
+import BoardColumnListItemDetails from "./BoardColumnListItemDetails";
 
 const BoardColumnListItem = ({ task, columnId }) => {
   const dispatch = useDispatch();
   const [taskState, setTaskState] = useState(task);
   const [inputState, setInputState] = useState(task.title === "");
+  const [modalState, setModalState] = useState(false);
 
   const handleTitleChange = (event) => {
     setTaskState({ ...taskState, title: event.target.value });
@@ -27,7 +35,16 @@ const BoardColumnListItem = ({ task, columnId }) => {
           }}
         />
       ) : (
-        <ListItemText primary={taskState.title} />
+        <>
+          <ListItemButton onClick={() => setModalState(true)}>
+            <ListItemText primary={taskState.title} />
+          </ListItemButton>
+          <Modal open={modalState} onClose={() => setModalState(false)}>
+            <div>
+              <BoardColumnListItemDetails task={task} />
+            </div>
+          </Modal>
+        </>
       )}
     </ListItem>
   );
