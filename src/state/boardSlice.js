@@ -1,24 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+import uuid from "react-uuid";
 
 const boardSlice = createSlice({
-  name: 'board',
+  name: "board",
   initialState: {
     columns: [
       {
-        id: 1,
-        title: 'Sample',
+        id: uuid(),
+        title: "Sample",
         tasks: [
           {
             id: 1,
-            title: 'Task 01',
+            title: "Task 01",
           },
           {
             id: 2,
-            title: 'Task 02',
-          }
-        ]
-      }
-    ]
+            title: "Task 02",
+          },
+        ],
+      },
+    ],
   },
   reducers: {
     addNewCard: (state, action) => {
@@ -30,15 +31,15 @@ const boardSlice = createSlice({
               ...column.tasks,
               {
                 id: action.payload.id,
-                title: action.payload.title
-              }
-            ]
-          }
+                title: action.payload.title,
+              },
+            ],
+          };
         }
 
         return {
-          ...column
-        }
+          ...column,
+        };
       });
     },
     removeEmptyCard: (state, action) => {
@@ -46,17 +47,27 @@ const boardSlice = createSlice({
         if (column.id === action.payload) {
           return {
             ...column,
-            tasks: column.tasks.filter((task) => task.id !== 0)
-          }
+            tasks: column.tasks.filter((task) => task.id !== 0),
+          };
         }
 
         return {
-          ...column
-        }
+          ...column,
+        };
       });
-    }   
-  }
+    },
+    addNewColumn: (state, action) => {
+      state.columns = [
+        ...state.columns,
+        {
+          id: action.payload.id,
+          title: action.payload.title,
+          tasks: [],
+        },
+      ];
+    },
+  },
 });
 
-export const { addNewCard, removeEmptyCard } = boardSlice.actions;
+export const { addNewCard, removeEmptyCard, addNewColumn } = boardSlice.actions;
 export default boardSlice.reducer;
