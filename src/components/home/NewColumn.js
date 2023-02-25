@@ -48,6 +48,7 @@ const NewColumn = () => {
         <CardActions>
           <Button
             size="small"
+            disabled={state.title === ""}
             onClick={() => {
               dispatch(addNewColumn({ id: uuid(), title: state.title }));
               setState({ creating: false, title: "" });
