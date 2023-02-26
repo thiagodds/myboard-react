@@ -1,7 +1,5 @@
-import { Box, Button, Toolbar, Grid } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { addNewColumn } from "../../state/boardSlice";
-import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+import { Box, Toolbar, Grid } from "@mui/material";
+import { useSelector } from "react-redux";
 import BoardColumn from "./BoardColumn";
 import NewColumn from "./NewColumn";
 
@@ -15,7 +13,6 @@ const renderColumns = (columns) => {
 
 const Board = () => {
   const columns = useSelector((state) => state.board.columns);
-  const dispatch = useDispatch();
 
   return (
     <Box
