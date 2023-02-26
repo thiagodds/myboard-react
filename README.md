@@ -1,3 +1,7 @@
+[![codecov](https://codecov.io/gh/thiagodds/myboard-react/branch/main/graph/badge.svg?token=FJZ7L1GJX6)](https://codecov.io/gh/thiagodds/myboard-react)
+![example workflow](https://github.com/thiagodds/myboard-react//actions/workflows/node.js.yml/badge.svg)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
