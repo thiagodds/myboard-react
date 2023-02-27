@@ -24,6 +24,7 @@ const NewColumn = () => {
   const renderAddIcon = () => {
     return (
       <Button
+        aria-label="new-column"
         variant="contained"
         size="medium"
         onClick={() => setState({ ...state, creating: true })}
