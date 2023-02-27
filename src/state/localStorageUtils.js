@@ -3,7 +3,12 @@ const storageUtils = {
     localStorage.setItem("state", JSON.stringify(state));
   },
   getStateFromStorage: () => {
-    return localStorage.getItem("state");
+    const data = localStorage.getItem("state");
+    if (data !== null) {
+      return JSON.parse(data);
+    }
+
+    return null;
   },
 };
 
