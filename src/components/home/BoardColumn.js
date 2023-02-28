@@ -35,6 +35,7 @@ const BoardColumn = ({ id }) => {
                 aria-controls={open ? "options-menu" : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
+                aria-label="options-button"
                 onClick={(event) => setOptionsState(event.currentTarget)}
               >
                 <MoreVertIcon />
